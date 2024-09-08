@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import "./App.css"
 
 
-
 function TodoApp() {
   const {register, handleSubmit, resetField, formState : { errors }} = useForm();
   const [todos, setTodos] = useState(() => {
@@ -15,7 +14,7 @@ function TodoApp() {
   })
 
   useEffect(() => {
-    localStorage.setItem("ITEMS", JSON.stringify(todos))
+    localStorage.setItem("ITEMS", JSON.stringify(todos));
   }, [todos])
 
 
@@ -52,15 +51,15 @@ function TodoApp() {
         <input {...register("task", {required: 'A task is needed.'})} placeholder='task' />
         <input type='submit' />
       </form>
-
       {errors.task && <p>{errors.task.message}</p>}
+
 
       <ul>
         {todos.map(todo => {
           return(
             <li key={todo.id} className={todo.completed ? 'completed' : ''} >
-              {todo.task}
               <label>
+                {todo.task}
                 <input 
                   type='checkbox'
                   checked={todo.completed}
